@@ -43,6 +43,12 @@ body {
     border-color: #008296;
 }
 
+/* Thorvarium's custom tabs  */
+#vvp-items-button--recommended a::before, #vvp-items-button--all a::before, #vvp-items-button--seller a::before {
+    color: #eff1f1;
+}
+/* End */
+
 .a-box:not(.a-alert) {
     background-color: #191919;
 }
