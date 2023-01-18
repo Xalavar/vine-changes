@@ -1,3 +1,9 @@
+/*** Credits: Lelouch vi Britannia#1876 (dark mode)
+
+Done in collaboration with Thorvarium#0001
+
+***/
+
 /*** -- General style overrides -- ***/
 body {
     color: #d5d5d5 !important;
@@ -12,7 +18,6 @@ body {
 .a-button .a-button-text {
     color: #eff1f1;
 }
-
 
 .a-button {
     background-color: #282b2b;
@@ -37,8 +42,6 @@ body {
     box-shadow: 0 0 0 3px #053138, inset 0 0 0 2px #191919;
 }
 
-
-
 .a-button-toggle.a-button-selected .a-button-inner, .a-button-toggle.a-button-selected.a-button-focus .a-button-inner, .a-button-toggle.a-button-selected.a-button-focus:hover .a-button-inner, .a-button-toggle.a-button-selected:focus .a-button-inner, .a-button-toggle.a-button-selected:focus:hover .a-button-inner, .a-button-toggle.a-button-selected:hover .a-button-inner {
     background-color: #00363d;
 }
@@ -60,7 +63,6 @@ body {
     box-shadow: 0 0 0 3px #053138, inset 0 0 0 2px #191919;
     border-color: #008296;
 }
-
 
 /*** Search bar ***/
 
@@ -110,7 +112,6 @@ input[type=search]:focus {
 #vvp-search-text-input {
     color: #eff1f1;
 }
-
 
 /* Thorvarium's custom tabs  */
 #vvp-items-button--recommended a::before, #vvp-items-button--all a::before, #vvp-items-button--seller a::before {
