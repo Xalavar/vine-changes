@@ -4,6 +4,11 @@
     overflow-y: scroll !important;
 }
 
+/* Hides the scrollbar */
+.a-popover-modal-fixed-height #a-popover-content-2::-webkit-scrollbar {
+    width: 0;
+}
+
 /*** == Glowing "Opt out of Vine" button == ***/
 #vvp-opt-out-of-vine-button {
     background-color: red;
@@ -13,7 +18,8 @@
     background-color: #d10000;
 }
 
-#vvp-opt-out-of-vine-button:focus, #vvp-opt-out-of-vine-button:active {
+#vvp-opt-out-of-vine-button:focus,
+#vvp-opt-out-of-vine-button:active {
     background-color: #930000;
     box-shadow: 0 0 0 3px #ff000040, inset 0 0 0 2px #ff000040;
     border-color: #960000;
@@ -51,13 +57,15 @@
     animation: glowing 1500ms linear infinite;
 }
 
-#vvp-opt-out-of-vine-button:active, #vvp-opt-out-of-vine-button:focus {
+#vvp-opt-out-of-vine-button:active,
+#vvp-opt-out-of-vine-button:focus {
     animation: glowing 500ms linear infinite;
 }
 
 /*** == Fancy tier colors == ***/
 /*** -- Silver tier -- ***/
-#vvp-current-status-box h1.vvp-aqua:has(span#vvp-silver-tier-label), #vvp-silver-status-perks-display strong {
+#vvp-current-status-box h1.vvp-aqua:has(span#vvp-silver-tier-label),
+#vvp-silver-status-perks-display strong {
     color: #C0C0C0;
     background: -webkit-gradient(linear, left top, left bottom, from(#C0C0C0), to(#979696));
     -webkit-background-clip: text;
@@ -82,7 +90,8 @@
 }
 
 /*** -- Gold tier -- ***/
-#vvp-current-status-box h1.vvp-aqua:has(span#vvp-gold-tier-label), #vvp-gold-status-perks-display strong {
+#vvp-current-status-box h1.vvp-aqua:has(span#vvp-gold-tier-label),
+#vvp-gold-status-perks-display strong {
     color: #F5C21B;
     background: -webkit-gradient(linear, left top, left bottom, from(#F5C21B), to(#D17000));
     -webkit-background-clip: text;
@@ -167,7 +176,8 @@
 }
 
 /* sparkle effect */
-#vvp-gold-tier-label::after, #vvp-gold-tier-label::before {
+#vvp-gold-tier-label::after,
+#vvp-gold-tier-label::before {
     -webkit-animation: sparkle 2s infinite;
     -webkit-animation-timing-function: linear;
     background: #FFF;
@@ -258,24 +268,20 @@
 #vvp-orders-table--tax-value-heading::after {
     margin-left: -115px;
     color: initial;
-    content: "Estimated taxable value" !important;
+    content: "Estimated taxable value";
 }
 
 /*** --- Awaiting Review Tab --- ***/
 /* Hide "Review" column, since that column is meaningless in this tab */
-.a-section.vvp-tab-content:has(#vvp-reviews-button--pending[aria-checked="true"]) .vvp-reviews-table--row > .vvp-reviews-table--text-col:nth-child(4):not([data-review-content]) {
-    display: none;
-}
-
 .a-section.vvp-tab-content:has(#vvp-reviews-button--pending[aria-checked="true"]) .vvp-reviews-table--heading-row > .vvp-reviews-table--text-col:nth-child(4):not([data-review-content]) {
     display: none;
 }
 
-/* Deleted items */
-.a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-reviews-table--text-col:not(.a-link-normal)) .vvp-reviews-table--text-col:nth-child(4):not([data-review-content]) {
-    color: transparent;
+.a-section.vvp-tab-content:has(#vvp-reviews-button--pending[aria-checked="true"]) .vvp-reviews-table--row > .vvp-reviews-table--text-col:nth-child(4):not([data-review-content]) {
+    display: none;
 }
 
+/* Deleted items */
 .a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-subtitle-color) .vvp-reviews-table--text-col:nth-child(4):not([data-review-content]):before {
     background-image: url(https://m.media-amazon.com/images/S/sash/ZNt8quAxIfEMMky.png);
     background-position: -451px -421px;
@@ -292,13 +298,26 @@
 }
 
 /*** --- Reviewed Tab --- ***/
-/* Replace "Not yet reviewed" with "Review pending approval" */
-.a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row > .vvp-reviews-table--text-col:nth-child(4):not([data-review-content]) {
-    color: transparent;
+/* Adding some extra column space to review status */
+.a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) th#vvp-reviews-table--review-content-heading {
+    width: 10%;
 }
 
+/* Since it now just says "Approved" instead of the review, just add a green checkmark for clarity. */
+.a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row > .vvp-reviews-table--text-col[data-review-content]::before {
+    background-image: url(https://m.media-amazon.com/images/S/sash/ZNt8quAxIfEMMky.png);
+    background-position: -83px -137px;
+    content: "";
+    padding: 1px 10px 1px 10px;
+    background-size: 512px 512px;
+    background-repeat: no-repeat;
+    margin-right: 7px;
+    vertical-align: middle;
+}
+
+/* Replace "Not yet reviewed" with "Review pending approval" */
 .a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-reviews-table--text-col:nth-child(4):not([data-review-content])) {
-    background: rgba(255, 255, 0, .125);
+    /*background: rgba(255, 255, 0, .125);*/
 }
 
 .a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row > .vvp-reviews-table--text-col:nth-child(4):not([data-review-content]):before {
@@ -308,18 +327,21 @@
     padding: 2px 10px 2px 10px;
     background-size: 512px 512px;
     background-repeat: no-repeat;
+    margin-right: 7px;
 }
 
+/*
 .a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row > .vvp-reviews-table--text-col:nth-child(4):not([data-review-content]):after {
     content: "Review pending approval";
     color: initial;
     margin-left: -98px;
     font-weight: 900;
 }
-
+*/
 /* Deleted items */
-.a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-subtitle-color):has(.vvp-reviews-table--text-col:nth-child(4):not([data-review-content])), .a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-subtitle-color):has(.vvp-reviews-table--actions-col:empty) {
-    background: rgba(255, 0, 0, .125);
+.a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-subtitle-color):has(.vvp-reviews-table--text-col:nth-child(4):not([data-review-content])),
+.a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-subtitle-color):has(.vvp-reviews-table--actions-col:empty) {
+    /*background: rgba(255, 0, 0, .125);*/
 }
 
 .a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-subtitle-color):has(.vvp-reviews-table--actions-col:empty) {
@@ -332,30 +354,48 @@
     content: "Contact Vine customer service to get this product removed from your Review list.";
 }
 */
-.a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-subtitle-color) .vvp-reviews-table--text-col:nth-child(4):not([data-review-content]):before, .a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-subtitle-color) .vvp-reviews-table--actions-col:nth-child(4):empty:before {
+/* Red exclammation mark icon */
+.a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-subtitle-color) .vvp-reviews-table--text-col:nth-child(4):not([data-review-content]):before,
+.a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-subtitle-color) .vvp-reviews-table--actions-col:nth-child(4):empty:before {
     background-image: url(https://m.media-amazon.com/images/S/sash/ZNt8quAxIfEMMky.png);
     background-position: -451px -420px;
     content: "";
     padding: 2px 15px 2px 5px;
     background-size: 512px 512px;
     background-repeat: no-repeat;
+    margin-right: 7px;
 }
 
-.a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-subtitle-color) .vvp-reviews-table--text-col:nth-child(4):not([data-review-content]):after, .a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-subtitle-color) .vvp-reviews-table--actions-col:nth-child(4):empty:after {
+/**/
+.a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-subtitle-color) .vvp-reviews-table--text-col:nth-child(4):not([data-review-content]):after,
+.a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-subtitle-color) .vvp-reviews-table--actions-col:nth-child(4):empty:after {
     content: "Cannot be reviewed";
     color: initial;
     margin-left: -98px;
-    font-weight: 900;
 }
 
 .a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-subtitle-color) .vvp-reviews-table--actions-col:nth-child(4):empty {
     display: table-cell;
+    display: -webkit-box !important;
+    float: left;
     padding: 15px;
 }
 
+.a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-subtitle-color) .vvp-reviews-table--text-col:nth-child(4):not([data-review-content]):before,
+.a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-subtitle-color) .vvp-reviews-table--actions-col:nth-child(4):empty:before {
+    background-image: url(https://m.media-amazon.com/images/S/sash/ZNt8quAxIfEMMky.png);
+    background-position: -83px -117px;
+    content: "";
+    padding: 2px 15px 1px 5px;
+    background-size: 512px 512px;
+    background-repeat: no-repeat;
+    margin-right: 7px;
+    filter: saturate(0);
+}
+
 .a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row:has(.vvp-subtitle-color) .vvp-reviews-table--actions-col:nth-child(4):empty:after {
-    content: "Review approved, but item deleted :(";
-    margin-left: 9px;
+    content: "Approved, but item deleted :(";
+    margin-left: 0px;
     margin-top: 25px;
 }
 
@@ -372,17 +412,6 @@
 
 .a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]):has(.vvp-reviews-table--actions-col:nth-child(4):empty) .vvp-items-button-and-search-container {
     margin-bottom: 0px;
-}
-
-/* Changing "Review Item" button since it already has been reviewed and is just pending */
-.a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row > .vvp-reviews-table--actions-col > .a-button-primary.vvp-reviews-table--action-btn > .a-button-inner > .a-button-text {
-    color: transparent !important;
-}
-
-.a-section.vvp-tab-content:has(#vvp-reviews-button--completed[aria-checked="true"]) .vvp-reviews-table--row > .vvp-reviews-table--actions-col > .a-button-primary.vvp-reviews-table--action-btn > .a-button-inner > .a-button-text:after {
-    content: "Edit review";
-    color: initial !important;
-    margin-left: -74px;
 }
 
 /* Adding fuel gauge-style progress bars to Accounts page */
@@ -406,7 +435,7 @@
     background: #F0F2F2;
     background-size: 100% 100%;
     opacity: 1;
-    width: calc(100% + 300px);
+    width: calc(100% + 1200px);
     height: 100%;
     overflow: unset;
 }
@@ -460,7 +489,8 @@ div.animated-progress progress-green::after {
     background-color: gold;
 }
 
-#vvp-num-reviewed-metric-display .progress-green span[data-progress*="100"], .progress-green span[style="overflow: hidden; width: 100%;"] {
+#vvp-num-reviewed-metric-display .progress-green span[data-progress*="100"],
+.progress-green span[style="overflow: hidden; width: 100%;"] {
     background: -webkit-gradient(linear, left top, left bottom, from(#F5C21B), to(#D17000));
     /*
     -webkit-animation: progress-sheen 2s linear infinite;
@@ -469,7 +499,8 @@ div.animated-progress progress-green::after {
     position: absolute;
 }
 
-#vvp-num-reviewed-metric-display .progress-green:has(span[data-progress*="100"]), .progress-green span[style="overflow: hidden; width: 100%;"] {
+#vvp-num-reviewed-metric-display .progress-green:has(span[data-progress*="100"]),
+.progress-green span[style="overflow: hidden; width: 100%;"] {
     background: -webkit-gradient(linear, left top, left bottom, from(#F5C21B), to(#D17000));
 }
 
@@ -477,4 +508,11 @@ div.animated-progress progress-green::after {
 /* Fixing a small visual oddity with the feedback rating */
 .a-icon.a-star-medium-5 {
     background-position: -99px -365px;
+}
+
+@media screen and (max-width: 900px) {
+    /* Changing to abbreviation to save room */
+    #vvp-orders-table--tax-value-heading::after {
+        content: "ETV" !important;
+    }
 }
